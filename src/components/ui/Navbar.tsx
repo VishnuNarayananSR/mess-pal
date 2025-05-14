@@ -6,6 +6,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { FaUtensils, FaBars, FaTimes, FaPhone } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { getMessInfo } from "@/lib/supabase";
+import Image from "next/image";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -74,10 +75,12 @@ export default function Navbar() {
 
             {session ? (
               <div className="flex items-center space-x-3">
-                <img
+                <Image
+                  width={32}
+                  height={32}
                   src={session.user?.image || "/images/default-avatar.png"}
                   alt={session.user?.name || "User"}
-                  className="w-8 h-8 rounded-full"
+                  className="w-8 h-8 rounded-full text-xs"
                 />
                 <button
                   onClick={() => signOut()}
@@ -145,7 +148,9 @@ export default function Navbar() {
               {session ? (
                 <div className="pt-2">
                   <div className="flex items-center space-x-3 mb-3">
-                    <img
+                    <Image
+                      width={32}
+                      height={32}
                       src={session.user?.image || "/images/default-avatar.png"}
                       alt={session.user?.name || "User"}
                       className="w-8 h-8 rounded-full"

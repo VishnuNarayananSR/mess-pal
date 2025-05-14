@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaLeaf, FaUtensils } from "react-icons/fa";
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 interface MenuItemProps {
   id: string;
   name: string;
@@ -31,7 +31,9 @@ export default function MenuCard({ item }: { item: MenuItemProps }) {
     >
       <div className="relative h-48 overflow-hidden">
         {item.image_url && !imageError ? (
-          <img
+          <Image
+            width={500}
+            height={500}
             src={item.image_url}
             alt={item.name}
             className="w-full h-full object-cover"

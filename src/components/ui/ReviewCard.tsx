@@ -2,6 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { formatDistanceToNow } from "date-fns";
 import { Review } from "@/hooks/useReviews";
+import Image from "next/image";
 
 export default function ReviewCard({ review }: { review: Review }) {
   // Helper function to render stars based on rating
@@ -31,14 +32,16 @@ export default function ReviewCard({ review }: { review: Review }) {
     >
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center">
-          <img
-            src={review.profiles?.avatar_url || "/images/default-avatar.png"}
-            alt={review.profiles?.name || "User"}
+          <Image
+            width={32}
+            height={32}
+            src={review.users?.image || "/images/default-avatar.png"}
+            alt={review.users?.name || "User"}
             className="w-10 h-10 rounded-full mr-3"
           />
           <div>
             <h4 className="font-medium text-gray-800">
-              {review.profiles?.name || "Anonymous User"}
+              {review.users?.name || "Anonymous User"}
             </h4>
             <div className="flex mt-1">{renderStars(review.rating)}</div>
           </div>

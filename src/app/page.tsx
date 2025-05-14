@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { getMessInfo, getMenuItems } from "@/lib/supabase";
 import PageContainer from "@/components/layout/PageContainer";
 import { FaUtensils, FaStar, FaPhone } from "react-icons/fa";
+import Image from "next/image";
 
 export default function HomePage() {
   const [messInfo, setMessInfo] = useState<any>(null);
@@ -113,7 +114,10 @@ export default function HomePage() {
               >
                 <div className="h-48 overflow-hidden">
                   {item.image_url ? (
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
+                      layout="intrinsic"
                       src={item.image_url}
                       alt={item.name}
                       className="w-full h-full object-cover"
@@ -166,7 +170,10 @@ export default function HomePage() {
                 <div className="bg-gray-200 h-64 md:h-80">
                   {/* Replace with actual image */}
                   <div className="w-full h-full flex items-center justify-center">
-                    <img
+                    <Image
+                      layout="intrinsic"
+                      width={500}
+                      height={500}
                       src="/images/food-mess.jpg"
                       alt="Food Mess Image"
                       className="w-full h-full object-cover flex items-center justify-center text-gray-400 text-2xl"
