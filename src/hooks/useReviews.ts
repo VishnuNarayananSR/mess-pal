@@ -8,9 +8,9 @@ export type Review = {
   rating: number;
   comment: string;
   created_at: string;
-  profiles: {
+  users: {
     name: string | null;
-    avatar_url: string | null;
+    image: string | null;
   };
 };
 

@@ -3,12 +3,16 @@ import { createClient } from "@supabase/supabase-js";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  db: { schema: process.env.SUPABASE_SCHEMA },
+});
 
 // For server-side admin operations (requires service role key)
 export const getSupabaseAdmin = () => {
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-  return createClient(supabaseUrl, supabaseServiceKey);
+  return createClient(supabaseUrl, supabaseServiceKey, {
+    db: { schema: process.env.SUPABASE_SCHEMA },
+  });
 };
 
 // Helper functions for data operations
@@ -43,7 +47,7 @@ export async function getReviews() {
     .select(
       `
       *,
-      profiles:user_id (name, avatar_url)
+      users:user_id (name, image)
     `
     )
     .order("created_at", { ascending: false });
